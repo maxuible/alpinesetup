@@ -3,7 +3,9 @@
 set -x
 set -e
 
-top_dir=$(pwd)
+apk add doas
+
+echo "permit persist :wheel" >> /etc/doas.conf
 
 doas setup-xorg-base
 
@@ -49,4 +51,6 @@ cd st-0.9.2
 doas make clean install
 
 cd ..
+
+mv ./alpinesetup.sh /home/$username/
 
