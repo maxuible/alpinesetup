@@ -13,6 +13,10 @@ apk add doas
 
 echo "permit persist :wheel" >> /etc/doas.conf
 
+doas adduser $username wheel
+doas adduser $username video
+doas adduser $username input
+
 doas setup-xorg-base
 
 # dwm
@@ -20,12 +24,6 @@ doas apk add make gcc musl-dev libx11-dev libxft-dev libxinerama-dev
 
 # st
 doas apk add ncurses font-dejavu
-
-
-
-doas adduser $username wheel
-doas adduser $username video
-doas adduser $username input
 
 touch /home/$username/.xinitrc
 
