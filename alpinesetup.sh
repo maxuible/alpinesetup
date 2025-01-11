@@ -1,7 +1,13 @@
 #!/bin/sh
 
+echo "Username?"
+
+read username
+
 set -x
 set -e
+
+top_dir=$(pwd)
 
 apk add doas
 
@@ -15,9 +21,7 @@ doas apk add make gcc musl-dev libx11-dev libxft-dev libxinerama-dev
 # st
 doas apk add ncurses font-dejavu
 
-echo "What is the username"
 
-read username
 
 doas adduser $username wheel
 doas adduser $username video
@@ -50,7 +54,7 @@ tar -xvzf st-0.9.2.tar.gz
 cd st-0.9.2
 doas make clean install
 
-cd ..
+cd $top_dir
 
 mv ./alpinesetup.sh /home/$username/
 
